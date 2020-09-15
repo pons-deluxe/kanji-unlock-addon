@@ -1,0 +1,1 @@
+# kanji-unlock-addon
