@@ -29,7 +29,9 @@ Since this add-on works by unsuspending kanji cards, they must be suspended for 
 
 ### Install script
 
-To use the add-on, the *vocabtokanji* folder should be copied to the Anki add-on folder  
+Add the add-on through Anki by going to **Tool > Add-ons > Get Add-ons** and pasting the code provided on the bottom of this page https://ankiweb.net/shared/info/953200781
+
+Alternatively, copy the *vocabtokanji* folder from this repo to the Anki add-on folder  
 (Anki2/addons21/ accessible in Anki with *Tools > Add-ons > View Files*).
 
 ### Setting deck/field names
