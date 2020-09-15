@@ -18,7 +18,7 @@ Two menu items are added to the Tools menu.
 
 ![toolsmenu](screenshots/toolsmenu.png)
 
-Selecting **KanjiUnlockAddon: Unsuspend new kanji** will take the newly learned vocabulary cards and check what kanji they contain. Those kanji will be unsuspended in the kanji deck. The tag '**kanjiunsuspended**' will added to those vocabulary cards.
+Selecting **KanjiUnlockAddon: Unsuspend new kanji** will take the newly learned vocabulary cards and check what kanji they contain. Those kanji will be unsuspended in the kanji deck. The tag '**kanjiunsuspended**' will be added to those vocabulary cards.
 
 
 ## Setting up
@@ -59,9 +59,9 @@ And 寺 itself has in its *Components*:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;土: soil; earth; ground; Turkey  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;寸: measurement; foot/10
 
-As such, if there is a proper field selected for **Kanji radicals/components field**, the vocabulary word 時 would unlock not only the kanji card 時 but also its radicals 日, 寺, 土, and 寸.
+As such, if there is a proper field selected for **Kanji radicals/components field**, the vocabulary word 時 would unlock not only the kanji card 時 but also the cards for 日, 寺, 土, and 寸.
 
 ---
 
-This addon has been tested with Anki 2.1.33
+This add-on has been tested with Anki 2.1.33
 
