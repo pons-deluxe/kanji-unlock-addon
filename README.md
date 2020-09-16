@@ -18,7 +18,8 @@ Two menu items are added to the Tools menu.
 
 ![toolsmenu](screenshots/toolsmenu.png)
 
-Selecting **KanjiUnlockAddon: Unsuspend new kanji** will take the newly learned vocabulary cards and check what kanji they contain. Those kanji will be unsuspended in the kanji deck. The tag '**kanjiunsuspended**' will be added to those vocabulary cards.
+Selecting **KanjiUnlockAddon: Unsuspend new kanji** will take the newly learned vocabulary cards and check what kanji they contain. Those kanji will be unsuspended in the kanji deck. The tag '**kanjiunsuspended**' will be added to those vocabulary cards.  
+That's it!
 
 
 ## Setting up
@@ -27,16 +28,9 @@ Selecting **KanjiUnlockAddon: Unsuspend new kanji** will take the newly learned 
 
 Since this add-on works by unsuspending kanji cards, they must be suspended for it to do anything. Cards can be suspended in the Anki card browser. Typically all kanji cards would be suspended before letting the add-on unsuspend the useful ones.
 
-### Install script
-
-Add the add-on through Anki by going to **Tool > Add-ons > Get Add-ons** and pasting the code provided on the bottom of this page https://ankiweb.net/shared/info/953200781
-
-Alternatively, copy the *vocabtokanji* folder from this repo to the Anki add-on folder  
-(Anki2/addons21/ accessible in Anki with *Tools > Add-ons > View Files*).
-
 ### Setting deck/field names
 
-Before the add-on can work it needs to know which deck is the **Vocabulary deck** and which is the **Kanji deck**.  
+Before the add-on can work, it needs to know which deck is the **Vocabulary deck** and which is the **Kanji deck**.  
 These can be set with **Tools > KanjiUnlockAddon: Set vocabulary/kanji decks**.
 
 ![setnamesmenu](screenshots/setdecks.png)
@@ -62,6 +56,16 @@ And 寺 itself has in its *Components*:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;寸: measurement; foot/10
 
 As such, if there is a proper field selected for **Kanji radicals/components field**, the vocabulary word 時 would unlock not only the kanji card 時 but also the cards for 日, 寺, 土, and 寸.
+
+
+## Installation
+
+This is an add-on for the flashcard program Anki (https://apps.ankiweb.net/) and cannot run by itself.
+
+In Anki, go to **Tools > Add-ons > Get Add-ons** and paste the code **953200781**.  
+https://ankiweb.net/shared/info/953200781
+
+Alternatively, copy the *vocabtokanji* folder from this repo to the Anki add-on folder (Anki2/addons21/).
 
 ---
 
