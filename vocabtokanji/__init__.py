@@ -270,7 +270,7 @@ def unsuspend_kanji():
             "components_field": mw.col.conf.get_immutable("kanji_unlock_addon_components_field")
         }
     except:
-        showInfo("Please set the vocabulary and kanji decks with\nTools > KanjiUnlockAddon: Set vocabulary/kanji decks")
+        showInfo("Please set the vocabulary and kanji decks with\nTools > KanjiTagAddon: Set vocabulary/kanji decks")
     else:
         # Configuration exists, check if it is valid
         if validate_configuration(my_config) is True:
@@ -307,9 +307,9 @@ def unsuspend_kanji():
             card_ids_to_unsuspend = []
             note_ids_reviewing = set()
 
-            # Get the new cards, the cards that are in review but haven't yet been tagged with "kanjiunsuspended"
+            # Get the new cards, the cards that are not suspended but haven't yet been tagged with "kanjiunsuspended"
             # "deck:Core 2000" is:review -tag:kanjiunsuspended
-            card_ids_reviewing = mw.col.find_cards(r'"deck:' + my_config["vocab_deck"] + r'" is:review '
+            card_ids_reviewing = mw.col.find_cards(r'"deck:' + my_config["vocab_deck"] + r'" -is:suspended '
                                                    r'-tag:kanjiunsuspended')
 
             # for each of those cards
@@ -334,12 +334,13 @@ def unsuspend_kanji():
                 # get cards with that kanji (from appropriate field) that are suspended
                 # example "deck:All in one Kanji - RTK order (new edition)" "Kanji:指" -is:suspended
                 card_ids = mw.col.findCards(r'"deck:' + my_config["kanji_deck"] + r'" "' + my_config["kanji_field"] +
-                                            r':' + a_kanji + r'" is:suspended')
+                                            r':' + a_kanji + r'"')# is:suspended')
                 if card_ids:
                     # Put kanji in text box
                     d.tb2.append(a_kanji)
                     # add cards to card_ids_to_unsuspend
                     card_ids_to_unsuspend.extend(card_ids)
+				
 
             # Add labels with the total number of new words and new kanji
             d.t1 = QLabel("New words: %d" % len(note_ids_reviewing))
@@ -348,26 +349,32 @@ def unsuspend_kanji():
                                                              len(card_ids_to_unsuspend)))
             d.l.addWidget(d.t2, 2, 0)
 
-            '''
+            
             # for debug purposes
-            d.tb1.clear()
-            for a_card_id in card_ids_to_unsuspend:
-                a_card = mw.col.getCard(a_card_id)
-                a_note = mw.col.getNote(a_card.nid)
-                d.tb1.append(str(a_card_id) + a_note["Kanji"])
-            '''
+            #d.tb1.clear() 
+            #for a_card_id in card_ids_to_unsuspend:
+            #    a_card = mw.col.getCard(a_card_id)
+            #    a_note = mw.col.getNote(a_card.nid)
+            #    d.tb1.append(str(a_card_id) + a_note["Kanji"])
+            
 
             # Ask for user confirmation
             if d.exec_():
-                # add the tag kanjiunsuspended to all cards in big_word_id_list
+                # add the tag kanjisearched to all cards in big_word_id_list
                 for a_note_id in note_ids_reviewing:
                     a_note = mw.col.getNote(a_note_id)
-                    a_note.addTag("kanjiunsuspended")
+                    a_note.addTag("kanjisearched")
                     a_note.flush()
 
                 # Unsuspend new kanji
-                if card_ids_to_unsuspend:
-                    mw.col.sched.unsuspendCards(card_ids_to_unsuspend)
+                #if card_ids_to_unsuspend:
+                #    mw.col.sched.unsuspendCards(card_ids_to_unsuspend)
+                # Tag Kanji -zwh
+                for a_card_id in card_ids_to_unsuspend:
+                    a_card = mw.col.getCard(a_card_id)
+                    a_note = mw.col.getNote(a_card.nid)
+                    a_note.addTag("kanjitaged")
+                    a_note.flush()
                 # Refresh main window
                 mw.reset()
                 return 0
@@ -408,9 +415,9 @@ def clear_saved_conf():
     mw.col.conf.remove("kanji_unlock_addon_components_field")
 
 
-# create 2 new menu items, "KanjiUnlockAddon: Unsuspend new kanji" and "KanjiUnlockAddon: Set vocabulary/kanji decks"
-actionUnsuspend = QAction("KanjiUnlockAddon: Unsuspend new kanji", mw)
-actionSetDecks = QAction("KanjiUnlockAddon: Set vocabulary/kanji decks", mw)
+# create 2 new menu items, "KanjiTagAddon: Tag kanji" and "KanjiTagAddon: Set vocabulary/kanji decks"
+actionUnsuspend = QAction("KanjiTagAddon: Tag kanji", mw)
+actionSetDecks = QAction("KanjiTagAddon: Set vocabulary/kanji decks", mw)
 # actionRemoveConf = QAction("DEBUG Remove conf", mw)  # for debug purposes
 
 # set them to call function when clicked
